@@ -35,26 +35,66 @@ This application helps organizations efficiently manage employee records, depart
 
 ---
 
-# 🧱 System Architecture
+# 🧱 Architecture Diagram
 
-```text
-User Interface (Razor Views)
-        │
-        ▼
-MVC Controllers
-        │
-        ▼
-Business Logic & Validation
-        │
-        ▼
-Entity Framework Core
-        │
-        ▼
-SQL Server Database
+```mermaid
+flowchart TD
+
+A[👨‍💻 User Interface - Razor Views] --> B[🎮 MVC Controllers]
+
+B --> C[📦 Business Logic Layer]
+
+C --> D[🗄️ Entity Framework Core]
+
+D --> E[(💾 SQL Server Database)]
+
+E --> D
+D --> C
+C --> B
+B --> A
 ```
 
 ---
 
+# 🔄 Employee CRUD Workflow
+
+```mermaid
+flowchart LR
+
+A[User Request] --> B[Controller]
+
+B --> C{Operation Type}
+
+C -->|Create| D[Add Employee]
+C -->|Read| E[Fetch Employee]
+C -->|Update| F[Update Employee]
+C -->|Delete| G[Delete Employee]
+
+D --> H[(SQL Server)]
+E --> H
+F --> H
+G --> H
+
+H --> I[Response Returned To UI]
+```
+
+---
+
+# 🏗️ MVC Architecture Overview
+
+```mermaid
+flowchart TD
+
+A[View - Razor Pages] -->|User Input| B[Controller]
+
+B -->|Process Request| C[Model]
+
+C -->|Database Operations| D[(SQL Server)]
+
+D --> C
+C --> B
+B -->|Render Response| A
+```
 # 📂 Project Structure
 
 ```text
